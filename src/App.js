@@ -65,6 +65,18 @@ const statusConfig = {
 // ─── Styles (Nueva paleta basada en tu logo) ──────────────────────────────────
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap');
+  
+  /* ESTO ES LO QUE ARREGLA EL FONDO BLANCO */
+  html, body {
+    background-color: #060814; /* El mismo color que tu --bg */
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none; /* Elimina el rebote elástico blanco */
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   .aa-app {
@@ -72,8 +84,19 @@ const STYLES = `
     --border:rgba(255,255,255,0.06); --border-h:rgba(0,210,255,0.25);
     --txt-1:#F1F5F9; --txt-2:#94A3B8; --txt-3:#475569;
     --r-sm:8px; --r-md:14px; --r-lg:22px;
-    font-family:'Outfit',sans-serif; background:var(--bg); color:var(--txt-1);
-    min-height:100vh; overflow-x:hidden;
+    
+    font-family:'Outfit',sans-serif; 
+    background:var(--bg); 
+    color:var(--txt-1);
+    
+    /* CAMBIO CLAVE: Usamos 100dvh para que se adapte a móviles */
+    min-height: 100dvh; 
+    width: 100%;
+    overflow-x:hidden;
+    
+    /* Esto gestiona el notch y la barra de navegación inferior */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   .aa-app ::-webkit-scrollbar{width:3px}
   .aa-app ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
